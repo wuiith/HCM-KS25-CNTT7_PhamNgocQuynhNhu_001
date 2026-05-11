@@ -133,6 +133,13 @@ having total_session >= 2;
 select * from Studio 
 where hourly_price > (select avg(hourly_price) from  Studio);
 
+-- 3.6
+select c.creator_name, c.creator_email 
+from Creator c
+join LiveSession l on l.creator_id = c.creator_id
+join Studio s on s.studio_id = l.studio_id
+where s.studio_id = 'ST02';
+
 -- 3.7
 select l.session_id, c.creator_name, s.studio_name, p.payment_method, p.payment_amount
 from LiveSession l
